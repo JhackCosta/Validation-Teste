@@ -2,11 +2,13 @@ package br.com.estudo.springvalidation.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.hateoas.RepresentationModel;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Data
-public class UsuarioRespostaDTO {
+public class UsuarioRespostaDTO extends RepresentationModel<UsuarioRespostaDTO> implements Serializable {
 
     private Long id;
     private String nome;
