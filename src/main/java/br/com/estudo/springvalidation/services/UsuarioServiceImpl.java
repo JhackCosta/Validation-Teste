@@ -1,10 +1,10 @@
-package br.com.estudo.springvalidation.Service;
+package br.com.estudo.springvalidation.services;
 
 
-import br.com.estudo.springvalidation.DTO.UsuarioDTO;
-import br.com.estudo.springvalidation.DTO.UsuarioRespostaDTO;
-import br.com.estudo.springvalidation.Handles.UsuarioNotFoundException;
-import br.com.estudo.springvalidation.Repository.UsuarioRepostiory;
+import br.com.estudo.springvalidation.dtos.UsuarioDTO;
+import br.com.estudo.springvalidation.dtos.UsuarioRespostaDTO;
+import br.com.estudo.springvalidation.handles.UsuarioNotFoundException;
+import br.com.estudo.springvalidation.repositories.UsuarioRepostiory;
 import br.com.estudo.springvalidation.entites.Usuario;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     public UsuarioRespostaDTO getUsuarioById(long id) {
 
         Usuario result = repostiory.findById(id)
-                .orElseThrow(()-> new UsuarioNotFoundException(id));
+                .orElseThrow(()-> new UsuarioNotFoundException("Usuario não encontrado"));
 
         return converterParaDTO(result);
     }
@@ -56,7 +56,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     public Usuario updateUsuario(long id, Usuario usuarioRequest) {
 
         Usuario usuario = repostiory.findById(id)
-               .orElseThrow(()-> new UsuarioNotFoundException(id));
+               .orElseThrow(()-> new UsuarioNotFoundException("Usuario não encontrado"));
 
         usuario.setNome(usuarioRequest.getNome());
         usuario.setCpf(usuarioRequest.getCpf());
@@ -68,7 +68,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Override
     public void deleteUsuario(long id) {
         Usuario usuario = repostiory.findById(id)
-                .orElseThrow(()-> new UsuarioNotFoundException(id));
+                .orElseThrow(()-> new UsuarioNotFoundException("Usuario não encontrado"));
 
         repostiory.delete(usuario);
     }

@@ -1,4 +1,4 @@
-package br.com.estudo.springvalidation.DTO;
+package br.com.estudo.springvalidation.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

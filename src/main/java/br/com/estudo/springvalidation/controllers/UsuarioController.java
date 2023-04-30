@@ -1,9 +1,9 @@
-package br.com.estudo.springvalidation.Controllers;
+package br.com.estudo.springvalidation.controllers;
 
 
-import br.com.estudo.springvalidation.DTO.UsuarioDTO;
-import br.com.estudo.springvalidation.DTO.UsuarioRespostaDTO;
-import br.com.estudo.springvalidation.Service.UsuarioServiceImpl;
+import br.com.estudo.springvalidation.dtos.UsuarioDTO;
+import br.com.estudo.springvalidation.dtos.UsuarioRespostaDTO;
+import br.com.estudo.springvalidation.services.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

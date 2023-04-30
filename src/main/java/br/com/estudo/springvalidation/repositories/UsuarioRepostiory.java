@@ -1,4 +1,4 @@
-package br.com.estudo.springvalidation.Repository;
+package br.com.estudo.springvalidation.repositories;
 
 
 import br.com.estudo.springvalidation.entites.Usuario;

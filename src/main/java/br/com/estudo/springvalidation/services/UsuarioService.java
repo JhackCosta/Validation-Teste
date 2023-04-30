@@ -1,8 +1,8 @@
-package br.com.estudo.springvalidation.Service;
+package br.com.estudo.springvalidation.services;
 
 
-import br.com.estudo.springvalidation.DTO.UsuarioDTO;
-import br.com.estudo.springvalidation.DTO.UsuarioRespostaDTO;
+import br.com.estudo.springvalidation.dtos.UsuarioDTO;
+import br.com.estudo.springvalidation.dtos.UsuarioRespostaDTO;
 import br.com.estudo.springvalidation.entites.Usuario;
 
 import java.util.List;

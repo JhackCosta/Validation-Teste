@@ -2,8 +2,8 @@ package br.com.estudo.springvalidation.Entitites;
 
 
 
-import br.com.estudo.springvalidation.Controllers.UsuarioController;
-import br.com.estudo.springvalidation.DTO.UsuarioDTO;
+import br.com.estudo.springvalidation.controllers.UsuarioController;
+import br.com.estudo.springvalidation.dtos.UsuarioDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

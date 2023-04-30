@@ -1,4 +1,4 @@
-package br.com.estudo.springvalidation.Doc;
+package br.com.estudo.springvalidation.docs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,6 @@ import java.util.List;
 @EnableSwagger2
 public class SwaggerConfig {
 
-
     private Contact contato() {
         return new Contact(
                 "Jhack Costa",
@@ -46,7 +45,6 @@ public class SwaggerConfig {
         return apiInfoBuilder;
 
     }
-
 
     //Para usar com Hateos sem dar erro precisa dessa config
     @Bean
