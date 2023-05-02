@@ -3,6 +3,7 @@ package br.com.estudo.springvalidation.services;
 
 import br.com.estudo.springvalidation.dtos.UsuarioDTO;
 import br.com.estudo.springvalidation.dtos.UsuarioRespostaDTO;
+import br.com.estudo.springvalidation.handles.DataIntegratyViolationException;
 import br.com.estudo.springvalidation.handles.UsuarioNotFoundException;
 import br.com.estudo.springvalidation.repositories.UsuarioRepostiory;
 import br.com.estudo.springvalidation.entites.Usuario;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
@@ -27,8 +29,10 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public UsuarioRespostaDTO createUsuario(UsuarioDTO usuarioDto) {
-       Usuario user =  repostiory.save(converterParaEntidade(usuarioDto));
-       return converterParaDTO(user);
+
+        findByCpf(usuarioDto);
+        Usuario user =  repostiory.save(converterParaEntidade(usuarioDto));
+        return converterParaDTO(user);
     }
 
     @Override
@@ -81,6 +85,14 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Override
     public UsuarioRespostaDTO converterParaDTO(Usuario usuario) {
         return modelMapper.map(usuario, UsuarioRespostaDTO.class);
+    }
+
+    private void findByCpf(UsuarioDTO obj){
+        Optional<Usuario> user =  repostiory.findByCpf(obj.getCpf());
+
+        if(user.isPresent()){
+            throw new DataIntegratyViolationException("CPF já cadastrado");
+        }
     }
 
 }

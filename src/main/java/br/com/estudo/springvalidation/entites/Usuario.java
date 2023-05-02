@@ -21,7 +21,7 @@ public class Usuario {
     @Column(name = "NOME")
     private String nome;
 
-    @Column(name = "CPF")
+    @Column(name = "CPF", unique = true)
     private String cpf;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
