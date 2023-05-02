@@ -60,7 +60,7 @@ public class SwaggerConfig {
 
         docket
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("br.com.estudo.springvalidation.Controllers"))
+                .apis(RequestHandlerSelectors.basePackage("br.com.estudo.springvalidation.controllers"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(this.informacoesApi().build())
