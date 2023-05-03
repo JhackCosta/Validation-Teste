@@ -57,16 +57,22 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public Usuario updateUsuario(long id, Usuario usuarioRequest) {
+    public UsuarioRespostaDTO updateUsuario(long id, UsuarioDTO user) {
 
-        Usuario usuario = repostiory.findById(id)
-               .orElseThrow(()-> new UsuarioNotFoundException("Usuario não encontrado"));
+        Usuario result = repostiory.findById(id)
+                .orElseThrow(()-> new UsuarioNotFoundException("Usuario não encontrado"));
 
-        usuario.setNome(usuarioRequest.getNome());
-        usuario.setCpf(usuarioRequest.getCpf());
-        usuario.setDataNascimento(usuarioRequest.getDataNascimento());
+        if(!user.getCpf().equals(result.getCpf()) ){
+            findByCpf(user);
+        }
 
-        return repostiory.save(usuario);
+        result.setNome(user.getNome());
+        result.setCpf(user.getCpf());
+        result.setDataNascimento(user.getDataNascimento());
+
+        repostiory.save(result);
+
+        return converterParaDTO(result);
     }
 
     @Override
