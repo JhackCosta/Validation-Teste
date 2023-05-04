@@ -43,19 +43,27 @@ public class UsuarioController {
     public ResponseEntity<UsuarioRespostaDTO> findById(@PathVariable Long id){
 
         UsuarioRespostaDTO response = service.getUsuarioById(id);
+        response.add(linkTo(methodOn(UsuarioController.class).getAllUsuario()).withRel("Lista usuarios:"));
 
-        response.add(linkTo(methodOn(UsuarioController.class).getAllUsuario()).withRel("Lista completa"));
         return new ResponseEntity<>( response, HttpStatus.OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<UsuarioRespostaDTO> postUsuario(@RequestBody @Valid UsuarioDTO usuarioDTO) {
-            return new ResponseEntity<>(service.createUsuario(usuarioDTO), HttpStatus.CREATED);
+
+            UsuarioRespostaDTO response = service.createUsuario(usuarioDTO);
+            response.add(linkTo(methodOn(UsuarioController.class).getAllUsuario()).withRel("Lista usuarios:"));
+
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PutMapping ("/update/id={id}")
     public ResponseEntity<UsuarioRespostaDTO> alter(@PathVariable Long id,@RequestBody @Valid UsuarioDTO usuarioDTO){
-        return new ResponseEntity<>(service.updateUsuario(id, usuarioDTO), HttpStatus.OK);
+
+        UsuarioRespostaDTO response = service.updateUsuario(id, usuarioDTO);
+        response.add(linkTo(methodOn(UsuarioController.class).getAllUsuario()).withRel("Lista usuarios:"));
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete={id}")
