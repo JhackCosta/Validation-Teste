@@ -2,7 +2,7 @@ package br.com.estudo.springvalidation.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -11,6 +11,9 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter @Setter
 public class UsuarioDTO {
 
     @NotBlank

@@ -4,13 +4,16 @@ package br.com.estudo.springvalidation.entites;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Data
+@AllArgsConstructor
+@Setter @Getter
+@NoArgsConstructor
 public class Usuario {
 
     @GeneratedValue(strategy= GenerationType.AUTO)

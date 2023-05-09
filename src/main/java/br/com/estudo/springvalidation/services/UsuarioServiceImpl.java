@@ -18,7 +18,7 @@ import java.util.Optional;
 public class UsuarioServiceImpl implements UsuarioService{
 
     @Autowired
-    private final UsuarioRepostiory repostiory;
+    private UsuarioRepostiory repostiory;
 
     @Autowired
     private ModelMapper modelMapper;
