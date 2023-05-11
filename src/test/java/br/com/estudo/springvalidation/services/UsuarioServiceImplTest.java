@@ -4,10 +4,12 @@ import br.com.estudo.springvalidation.dtos.UsuarioDTO;
 import br.com.estudo.springvalidation.dtos.UsuarioRespostaDTO;
 import br.com.estudo.springvalidation.entites.Usuario;
 import br.com.estudo.springvalidation.repositories.UsuarioRepostiory;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,16 +22,16 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class UsuarioServiceImplTest {
 
-    private static final long id = 1L;
-    private static final String nome = "Joao silva";
-    private static final String cpf = "876.887.878.87";
-    private static final LocalDate dataNascimento = LocalDate.now();
+    private final long id = 1L;
+    private final String nome = "Joao silva";
+    private final String cpf = "876.887.878.87";
+    private final LocalDate dataNascimento = LocalDate.now();
 
     @InjectMocks
     private UsuarioServiceImpl service;
 
     @Mock
-    private  UsuarioRepostiory repostiory;
+    private  UsuarioRepostiory repository;
 
     @Mock
     private ModelMapper modelMapper;
@@ -45,17 +47,39 @@ class UsuarioServiceImplTest {
         startUser();
     }
 
+
+    void salvarComSucesso(){
+
+        Usuario userTeste= new Usuario(1L, "Jhack Costa", "982.883.321.42", LocalDate.now());
+
+
+
+        service.createUsuario(modelMapper.map(userTeste, UsuarioDTO.class));
+    }
+
+
+    @Test
+    void whenFindByIdThenDTOResponse() {
+
+        Mockito.when(repository.findById(id)).thenReturn(opcionalUser);
+        Mockito.when(service.getUsuarioById(id)).thenReturn(userRespostaDTO);
+
+        UsuarioRespostaDTO response = service.getUsuarioById(id);
+
+        Assertions.assertEquals(UsuarioRespostaDTO.class, response.getClass());
+
+    }
+
     @Test
     void createUsuario() {
+
     }
 
     @Test
     void getAllUsuario() {
     }
 
-    @Test
-    void getUsuarioById() {
-    }
+
 
     @Test
     void updateUsuario() {
@@ -74,10 +98,10 @@ class UsuarioServiceImplTest {
     }
 
     private void startUser(){
-
         user = new Usuario(id, nome, cpf, dataNascimento);
         userDTO = new UsuarioDTO(nome, cpf, dataNascimento);
         userRespostaDTO = new UsuarioRespostaDTO(id, nome, dataNascimento);
         opcionalUser = Optional.of(new Usuario(id, nome, cpf, dataNascimento));
+
     }
 }
