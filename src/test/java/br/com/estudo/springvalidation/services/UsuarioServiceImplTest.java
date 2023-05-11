@@ -47,17 +47,6 @@ class UsuarioServiceImplTest {
         startUser();
     }
 
-
-    void salvarComSucesso(){
-
-        Usuario userTeste= new Usuario(1L, "Jhack Costa", "982.883.321.42", LocalDate.now());
-
-
-
-        service.createUsuario(modelMapper.map(userTeste, UsuarioDTO.class));
-    }
-
-
     @Test
     void whenFindByIdThenDTOResponse() {
 
